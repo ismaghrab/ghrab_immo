@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use Cocur\Slugify\Slugify;
 use App\Repository\PropertyRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,8 +13,8 @@ class Property
 {
 
     const HEAT = [
-        0 => 'electrique',
-        1 => 'gaz'
+        0 => 'Electrique',
+        1 => 'Gaz'
     ];
 
     /**
@@ -112,6 +112,13 @@ class Property
         return $this;
     }
 
+    public function getSlug()
+    {
+        // return new Slugify()->slugify($this->title); // hello-world
+        $slugify = new Slugify();
+        return $slugify->slugify($this->title); // hello-world
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -184,6 +191,11 @@ class Property
         return $this;
     }
 
+    public function getFormatedPrice()
+    {
+        return number_format($this->price,0,'', ' ');
+    }
+
     public function getHeat(): ?int
     {
         return $this->heat;
@@ -194,6 +206,12 @@ class Property
         $this->heat = $heat;
 
         return $this;
+    }
+
+    public function getHeatType():string
+    {
+
+        return self::HEAT[$this->heat];
     }
 
     public function getCity(): ?string

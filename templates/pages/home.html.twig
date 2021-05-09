@@ -6,6 +6,31 @@
 <div class="jumbotron text-center">
     <h1>Agence Ghrab Immo </h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque eius odit maxime distinctio animi earum, voluptatum dolorum dolor reiciendis illum quisquam fugit similique consectetur quasi ex ab autem nulla, optio impedit dolores quia sit pariatur iure aspernatur. Rerum impedit quasi a, tempora sit, doloribus beatae recusandae, possimus ducimus nemo omnis.</p>
+
+    <p> lorem;
+</div>
+
+<div class="container">
+<h2>Les derniers biens</h2>
+<div class="row flex">
+{% for property in properties %}
+
+    <div class="col-3">
+        <div class="card">
+            <div class="div-body">
+                <h5 class="card-title">
+                <a href="{{ path('property.show' , {id: property.id, slug: property.slug}) }}"> {{ property.title }}</a>
+                </h5>
+                <p div class="card-text">{{ property.city }} {{ (property.postal) }}</p>
+                <p div class ="text-primary">{{ property.FormatedPrice }} €</p>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+
+
 </div>
 
 {% endblock %}
